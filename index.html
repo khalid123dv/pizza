@@ -8,7 +8,9 @@
   </head>
 
   <body>
-    <a-scene mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/band.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <!-- <a-scene mindar-image="filterMinCF:0.0001 ; filterBeta: 10; warmupTolerance: 1; uiLoading: #loading; uiScanning: #loading;imageTargetSrc: ./targets(1).mind" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false"> -->
+
+    <a-scene mindar-image="filterMinCF:0.0001 ; filterBeta: 10; warmupTolerance: 1; imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/band.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
 
  
       <a-assets>
