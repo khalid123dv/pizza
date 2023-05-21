@@ -1,17 +1,10 @@
-
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
-    <script src="gesture-detector.js"></script>
-    <script src="gesture-handler.js"></script>
-    <script src="gesture-dec.js"></script>
-   
-  </head>
-<!--working fine-->
-  <body>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
+</head>
+<body>
     <a-scene mindar-image="filterMinCF:0.0001; filterBeta: 0.001; imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/band.mind;" 
     color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" 
     vr-mode-ui="enabled: false" 
@@ -20,36 +13,83 @@
     id="scene"
     renderer="logarithmicDepthBuffer: true;"
     embedded>
-
-      <a-assets>
-	<a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/bear/scene.gltf"></a-asset-item>
-	<a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item>
-  <a-asset-item id="pizza" src="./plain_pizza_slice.glb"></a-asset-item>
-
-      </a-assets>
-
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-
-    <!--  <a-entity mindar-image-target="targetIndex: 0" class="clickable" gesture-handler>
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel">
-      </a-gltf-model>
-      -->
-
-      <a-entity 
-      mindar-image-target="targetIndex: 0" 
-      class="clickable" 
-      id="bowser-model"
-      gltf-model="#pizza"
-      position="0 0 0"
-      scale="0.3 0.3 0.3"   
-      class="clickable"
-      gesture-handler
-    > </a-entity>
     
-      </a-entity>
-      <a-entity mindar-image-target="targetIndex: 1" class="clickable">
-	<a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="4 4 4" src="#pizza" gesture-dec>
-      </a-entity>
-    </a-scene>
-  </body>
+    <a-assets>
+      <a-asset-item id="model" src="pizza.glb"></a-asset-item>
+    </a-assets>
+
+    <a-entity 
+    mindar-image-target="targetIndex: 0" >
+      <a-entity
+        gltf-model="#model"
+        gesture-detector
+        rotation="0 0 0"
+        position="0 0 0"
+        scale="1 1 1"
+      ></a-entity>
+    </a-entity>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script>
+    AFRAME.registerComponent("gesture-detector", {
+      init: function () {
+        this.initialScale = this.el.object3D.scale.clone();
+        this.initialRotation = this.el.object3D.rotation.clone();
+
+        this.el.sceneEl.addEventListener("touchstart", this.onTouchStart.bind(this));
+        this.el.sceneEl.addEventListener("touchmove", this.onTouchMove.bind(this));
+        this.el.sceneEl.addEventListener("touchend", this.onTouchEnd.bind(this));
+      },
+
+      onTouchStart: function (event) {
+        this.startPosition = this.getTouchPosition(event);
+        this.startScale = this.el.object3D.scale.clone();
+        this.startRotation = this.el.object3D.rotation.clone();
+      },
+
+      onTouchMove: function (event) {
+        if (event.touches.length === 2) {
+          const currentScale = this.calculatePinchScale(event.touches);
+          this.el.object3D.scale.copy(this.startScale.clone().multiply(currentScale));
+
+          const currentRotation = this.calculateRotation(event.touches);
+          this.el.object3D.rotation.copy(this.startRotation.clone().multiply(currentRotation));
+        }
+      },
+
+      onTouchEnd: function () {
+        this.startPosition = null;
+        this.startScale = null;
+        this.startRotation = null;
+      },
+
+      getTouchPosition: function (event) {
+        const touch = event.touches[0];
+        const rect = this.el.sceneEl.getBoundingClientRect();
+        const x = (touch.clientX - rect.left) / rect.width;
+        const y = (touch.clientY - rect.top) / rect.height;
+        return { x, y };
+      },
+
+      calculatePinchScale: function (touches) {
+        const touch1 = touches[0];
+        const touch2 = touches[1];
+        const startDistance = this.startPosition.distanceTo(new THREE.Vector2(touch1.clientX, touch1.clientY));
+        const currentDistance = this.startPosition.distanceTo(new THREE.Vector2(touch2.clientX, touch2.clientY));
+        return new THREE.Vector3(currentDistance / startDistance, currentDistance / startDistance, currentDistance / startDistance);
+      },
+
+      calculateRotation: function (touches) {
+        const touch1 = touches[0];
+        const touch2 = touches[1];
+        const startAngle = Math.atan2(touch2.clientY - touch1.clientY, touch2.clientX - touch1.clientX);
+        const currentAngle = Math.atan2(touches[1].clientY - touches[0].clientY, touches[1].clientX - touches[0].clientX);
+        const angleDelta = currentAngle - startAngle;
+        return new THREE.Quaternion().setFromEuler(new THREE.Euler(0, angleDelta, 0, "XYZ"));
+      }
+    });
+  </script>
+</body>
 </html>
