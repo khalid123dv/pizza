@@ -28,6 +28,8 @@ AFRAME.registerComponent("gesture-detector", {
   },
 
   remove: function() {
+    console.log("emitGestureremove: ", remove);
+
     this.targetElement.removeEventListener("touchstart", this.emitGestureEvent);
 
     this.targetElement.removeEventListener("touchend", this.emitGestureEvent);
@@ -36,6 +38,8 @@ AFRAME.registerComponent("gesture-detector", {
   },
 
   emitGestureEvent(event) {
+    console.log("emitGestureEvent: ", event);
+
     const currentState = this.getTouchState(event);
 
     const previousState = this.internalState.previousState;
@@ -102,6 +106,7 @@ AFRAME.registerComponent("gesture-detector", {
   },
 
   getTouchState: function(event) {
+    console.log("getTouchState: ", getTouchState);
     if (event.touches.length === 0) {
       return null;
     }
@@ -160,6 +165,7 @@ AFRAME.registerComponent("gesture-detector", {
   },
 
   getEventPrefix(touchCount) {
+    console.log("touchCount= ", touchCount)
     const numberNames = ["one", "two", "three", "many"];
 
     return numberNames[Math.min(touchCount, 4) - 1];
