@@ -1,0 +1,66 @@
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
+  </head>
+
+  <body>
+    <!-- <a-scene mindar-image="filterMinCF:0.0001 ; filterBeta: 10; warmupTolerance: 1; uiLoading: #loading; uiScanning: #loading;imageTargetSrc: ./targets(1).mind" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false"> -->
+     <!--  <a-scene mindar-image="filterMinCF:0.000001 ; filterBeta: 2000; warmupTolerance: 5; missTolerance: 10; imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/band.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+     -->
+    <a-scene mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/band.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+
+ 
+      <a-assets>
+	<a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/bear/scene.gltf"></a-asset-item>
+	<a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item>
+	<a-asset-item id="pizza" src="./plain_pizza_slice.glb"></a-asset-item>
+</a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity mindar-image-target="targetIndex: 1">
+	<a-gltf-model rotation="0 0 0 " position="0 0 0" scale="2.05 2.05 2.05" src="#pizza">
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 0">
+	<a-gltf-model rotation="0 0 0 " position="0 0 0" scale="2.5 2.5 2.5" src="#raccoonModel">
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
+
+<!--
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
+  </head>
+
+  <body>
+    <a-scene mindar-image="imageTargetSrc: ./piza_targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+
+    <a-scene mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/band.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+     
+      <a-assets>
+	<a-asset-item id="pizza" src="./pizza.glb"></a-asset-item>
+	<a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item>
+     
+  </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity mindar-image-target="targetIndex: 0">
+	<a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="1 1 1" src="#pizza" animation-mixer>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 1">
+	<a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#bearModel" animation-mixer>
+      </a-entity> 
+    </a-scene>
+  </body>
+</html>
+-->
