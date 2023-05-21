@@ -22,12 +22,12 @@ AFRAME.registerComponent("gesture-handler", {
     this.scaleFactor = 1;
 
     this.el.sceneEl.addEventListener("markerFound", (e) => {
-      console.log("marker found "," Dk" );
+      console.log(" see marker found "," Dk" );
       this.isVisible = true;
     });
 
     this.el.sceneEl.addEventListener("markerLost", (e) => {
-      console.log("marker gone "," Dk" );
+      console.log("see marker gone "," Dk" );
 
       this.isVisible = false;
     });
