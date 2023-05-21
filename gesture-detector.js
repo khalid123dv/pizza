@@ -106,7 +106,7 @@ AFRAME.registerComponent("gesture-detector", {
   },
 
   getTouchState: function(event) {
-    console.log("getTouchState: ", getTouchState);
+    console.log("getTouchState: ", event);
     if (event.touches.length === 0) {
       return null;
     }
