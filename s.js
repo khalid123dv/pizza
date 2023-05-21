@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Retrieve the <a-gltf-model> element
-    const gltfModel = document.querySelector("#gltfModel");
-  
+    console.log("s.js is here")
+    const gltfModel = document.querySelectorAll("a-gltf-model");
+    
     if (gltfModel) {
+        console.log("gltfModel", gltfModel)
       let initialPinchDistance = 0;
   
       // Add an event listener for touchmove to detect the pinch gesture
