@@ -11,7 +11,8 @@ AFRAME.registerComponent("gesture-handler", {
   init: function () {
     console.log("registered hai 2");
     console.log("registered hai 2 ", this );
-    console.log("registered hai 2 ", this.handleScale.bind(this) );
+    console.log("registered hai 2 this.el.object3D", this.el.object3D );
+    console.log("registered hai 2 this.el.sceneEl", this.el.sceneEl );
 
     this.handleScale = this.handleScale.bind(this);
     this.handleRotation = this.handleRotation.bind(this);
@@ -33,6 +34,8 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   update: function () {
+    console.log("remove");
+
     if (this.data.enabled) {
       this.el.sceneEl.addEventListener("onefingermove", this.handleRotation);
       this.el.sceneEl.addEventListener("twofingermove", this.handleScale);
@@ -43,11 +46,15 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   remove: function () {
+    console.log("remove");
+
     this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
     this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
   },
 
   handleRotation: function (event) {
+    console.log("handleRotation2", event);
+
     if (this.isVisible) {
       this.el.object3D.rotation.y +=
         event.detail.positionChange.x * this.data.rotationFactor;
@@ -60,6 +67,8 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   handleScale: function (event) {
+    console.log("handleScale2", event);
+
     if (this.isVisible) {
       this.scaleFactor *=
         1 + event.detail.spreadChange / event.detail.startSpread;
