@@ -9,6 +9,8 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   init: function () {
+    console.log("registered hai 2");
+
     this.handleScale = this.handleScale.bind(this);
     this.handleRotation = this.handleRotation.bind(this);
 
