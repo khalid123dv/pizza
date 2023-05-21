@@ -6,6 +6,7 @@ AFRAME.registerComponent("gesture-detector", {
   },
 
   init: function() {
+    console.log("registered hai");
     this.targetElement =
       this.data.element && document.querySelector(this.data.element);
 
