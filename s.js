@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (event.touches.length === 2) {
           const touch1 = event.touches[0];
           const touch2 = event.touches[1];
-  
           const currentPinchDistance = Math.hypot(
             touch1.clientX - touch2.clientX,
             touch1.clientY - touch2.clientY
@@ -24,7 +23,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const pinchDelta = currentPinchDistance - initialPinchDistance;
   
             if (pinchDelta > 0) {
+                console.log("33 punch")
+                console.log("33 gltfModel", gltfModel)
               const currentScale = gltfModel.getAttribute("scale");
+                                 
               const newScale = {
                 x: currentScale.x * 1.1, // Increase the size by 10%
                 y: currentScale.y * 1.1,
