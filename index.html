@@ -46,7 +46,7 @@
   </head>
 <!--working fine-->
   <body>
-    <a-scene mindar-image="filterMinCF:0.0001; filterBeta: 0.001; imageTargetSrc: ./targets2a.mind;" 
+    <a-scene mindar-image="filterMinCF:0.0001; filterBeta: 0.001; imageTargetSrc: ./targets2c.mind;" 
     color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" 
     vr-mode-ui="enabled: false" 
     device-orientation-permission-ui="enabled: false"  
@@ -59,6 +59,7 @@
 	<a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/bear/scene.gltf"></a-asset-item>
   <a-asset-item id="cupcake" src="./cupcake.glb"></a-asset-item>
   <a-asset-item id="plain_pizza_slice" src="./plain_pizza_slice.glb"></a-asset-item>
+  <a-asset-item id="ara" src="./arancini.glb"></a-asset-item>
 
   
       </a-assets>
@@ -83,6 +84,10 @@
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 1">
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="8 8 8" src="#plain_pizza_slice" scale-on-gesture >
+      </a-entity>
+
+      <a-entity mindar-image-target="targetIndex: 2">
         <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="8 8 8" src="#plain_pizza_slice" scale-on-gesture >
       </a-entity>
 
