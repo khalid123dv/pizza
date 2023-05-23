@@ -46,7 +46,7 @@
   </head>
 <!--working fine-->
   <body>
-    <a-scene mindar-image="filterMinCF:0.0001; filterBeta: 0.001; imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/band.mind;" 
+    <a-scene mindar-image="filterMinCF:0.0001; filterBeta: 0.001; imageTargetSrc: ./targets_pop.mind;" 
     color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" 
     vr-mode-ui="enabled: false" 
     device-orientation-permission-ui="enabled: false"  
@@ -74,6 +74,13 @@
       <a-entity mindar-image-target="targetIndex: 1">
         <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#bearModel" scale-on-gesture >
       </a-entity>
+      <a-entity mindar-image-target="targetIndex: 2" >
+	      <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.3 0.3 0.3" src="#bearModel" scale-on-gesture/>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 3">
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" scale-on-gesture >
+      </a-entity>
+
 
     <!--   <a-entity mindar-image-target="targetIndex: 1" >
 	      <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.3 0.3 0.3" src="#raccoonModel" />
