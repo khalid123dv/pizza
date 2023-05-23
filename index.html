@@ -22,6 +22,7 @@
         },
         remove: function () {
            console.log("removed")
+          this.el.object3D.scale.copy(this.startScale); // Set the initial scale during cleanup
           this.el.sceneEl.removeEventListener('touchmove', this.handleGesture);
         },
         handleGesture: function (event) {
@@ -68,10 +69,10 @@
       -->
 
       <a-entity mindar-image-target="targetIndex: 0" >
-	      <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.3 0.3 0.3" src="#bearModel" />
+	      <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.3 0.3 0.3" src="#bearModel" scale-on-gesture/>
       </a-entity>
       <a-entity mindar-image-target="targetIndex: 1">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#bearModel" animation-mixer>
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#bearModel" scale-on-gesture >
       </a-entity>
 
     <!--   <a-entity mindar-image-target="targetIndex: 1" >
