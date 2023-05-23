@@ -54,12 +54,15 @@
     id="scene"
     embedded>
 
-    <!-- //cake,piza,doll,fullpiza || bowl, cake pizz.-->
+    <!-- //cake,piza,doll,fullpiza || bowl, cake pizz.    cake, ball, piza-->
       <a-assets timeout="1000000">
-  <a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/bear/scene.gltf" timeout="100000"></a-asset-item>
+  
+  
+  <a-asset-item id="cupcake" src="./cupcake.glb" timeout="100000"></a-asset-item>
+  <a-asset-item id="plain_pizza_slice" src="./plain_pizza_slice.glb" timeout="100000"></a-asset-item>
+  <a-asset-item id="ara" src="./arancini.glb" timeout="100000"></a-asset-item> 
 
    <!-- <a-asset-item id="cupcake" src="./cupcake.glb" timeout="100000"></a-asset-item>
-  <a-asset-item id="plain_pizza_slice" src="./plain_pizza_slice.glb" timeout="100000"></a-asset-item>
   <a-asset-item id="ara" src="./arancini.glb" timeout="100000"></a-asset-item> -->
 
   
@@ -81,19 +84,19 @@
       </a-entity>-->
 
       <a-entity mindar-image-target="targetIndex: 0" >
-        <a-box color="red" depth="2" height="4" width="0.5"></a-box>
+        <a-box color="red" depth="2" height="1" width="0.2"></a-box>
         <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="8 8 8" src="#cupcake" scale-on-gesture >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 1">
-        <a-box color="green" depth="2" height="4" width="0.5"></a-box>
+        <a-box color="green" depth="2" height="1" width="0.2"></a-box>
 
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.3 0.3 0.3" src="#bearModel" scale-on-gesture/>
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.3 0.3 0.3" src="#ara" scale-on-gesture/>
 
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 2">
-        <a-box color="blue" depth="2" height="4" width="0.5"></a-box>
+        <a-box color="blue" depth="2" height="1" width="0.2"></a-box>
         <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="8 8 8" src="#plain_pizza_slice" scale-on-gesture >
       </a-entity>
 
