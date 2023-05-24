@@ -41,6 +41,17 @@
       });
     </script>
 
+<script>
+  AFRAME.registerComponent('toeditor', {
+    init: function(){    
+      this.flushToDOM(true)
+      console.log(this.el.innerHTML
+                  .replace(/<canvas.*/,"")
+                  .replace(/\w+="" /g, ""))
+    }  
+  });
+  </script>
+
 
    
   </head>
@@ -52,7 +63,8 @@
     device-orientation-permission-ui="enabled: false"  
     gesture-detector
     id="scene"
-    embedded>
+    embedded
+    toeditor>
 
     <!-- //cake,piza,doll,fullpiza || bowl, cake pizz.    cake, ball, piza-->
       <a-assets timeout="1000000">
